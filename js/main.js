@@ -33,19 +33,29 @@ $('document').ready(function() {
         $('.wicon').html('<img src="http://openweathermap.org/img/w/'+response.weather[0].icon+'.png"></img');
 
         $('.json pre').html(JSON.stringify(response));
-
-
+      })
     },
     function() {
-      console.log("Error finding user location");
+      $.getJSON('http://api.openweathermap.org/data/2.5/weather?'+Conditions.location+'&APPID=0b9005c45c2567d9a42473381c4027ec', function(response) {
+        var location = response.name;
+        var temp = ((response.main.temp-273.15)*1.8+32).toFixed(1);
+        var windspeed = (response.wind.speed * 0.868976).toFixed(2);
+        var windgust = (response.wind.gust) ? response.wind.gust : "";
+        var winddirection = response.wind.deg;
+
+        // Write to DOM
+        $('.location').html(location);
+        $('.temp').addClass("fahrenheit").html(temp);
+        $('.windspeed').html(windspeed);
+        $('.windgust').html(windgust);
+        $('.winddirection').html('<i class="wi wi-wind from-'+winddirection.toFixed()+'-deg"></i>');
+        $('.wicon').html('<img src="http://openweathermap.org/img/w/'+response.weather[0].icon+'.png"></img');
+
+        $('.json pre').html(JSON.stringify(response));
+      });
     });
 
   // API Call
-
-
-  }); // API call
-
-  // $('.coordinates').html(navigator.geolocation.getCurrentPosition);
 
   // Adding interactivity
   $('.temp').click(function() {
@@ -59,4 +69,4 @@ $('document').ready(function() {
     }
     $('.temp').html(newTemp);
   });
-});
+}); 
