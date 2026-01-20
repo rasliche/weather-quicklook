@@ -14,7 +14,7 @@ $('document').ready(function() {
   }
 
   var getWeather = function() {
-    $.getJSON('http://api.openweathermap.org/data/2.5/weather?'+Conditions.location+'&APPID=0b9005c45c2567d9a42473381c4027ec', function(response) {
+    $.getJSON('https://api.openweathermap.org/data/2.5/weather?'+Conditions.location+'&APPID=0b9005c45c2567d9a42473381c4027ec', function(response) {
       var location = response.name;
       var temp = ((response.main.temp-273.15)*1.8+32).toFixed(1);
       var windspeed = (response.wind.speed * 0.868976).toFixed(2);
@@ -45,7 +45,7 @@ $('document').ready(function() {
     }); // Location Call
 
   // 8724238 Munson Island Tide Station ID
-  $.getJSON('http://tidesandcurrents.noaa.gov/api/datagetter?begin_date=20130808 15:00&end_date=20130808 15:06&station=8454000&product=water_temperature&units=english&time_zone=gmt&application=ports_screen&format=json', function(response) {
+  $.getJSON('https://tidesandcurrents.noaa.gov/api/datagetter?begin_date=20130808 15:00&end_date=20130808 15:06&station=8454000&product=water_temperature&units=english&time_zone=gmt&application=ports_screen&format=json', function(response) {
     console.log(JSON.stringify(response));
   });
 
