@@ -55,9 +55,13 @@ $('document').ready(function() {
     if ($('.temp').hasClass('fahrenheit')) {
       newTemp = toCelc($('.temp').html());
       $('.temp').removeClass('fahrenheit');
+      $('.temp').addClass('celsius');
+      $('.units').html('C')
     } else {
       newTemp = toFahr($('.temp').html());
+      $('.temp').removeClass('celsius');
       $('.temp').addClass('fahrenheit');
+      $('.units').html('F')
     }
     $('.temp').html(newTemp);
   });
